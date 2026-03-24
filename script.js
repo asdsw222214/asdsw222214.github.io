@@ -50,35 +50,19 @@ document.addEventListener('click', () => {
     applyProgress(5);
 });
 
-// 自動播放並循環 2323.mp3（放在 images 資料夾）
+// 背景音樂：僅在使用者互動（按按鈕）時播放，避免被瀏覽器阻擋
 const bgm = new Audio('images/2323.mp3');
 bgm.loop = true;
 
-// 嘗試在頁面載入時自動播放
-window.addEventListener('load', () => {
-    bgm.play().then(() => {
-        if (musicToggleBtn) {
-            musicToggleBtn.textContent = '暫停';
-        }
-    }).catch(() => {
-        // 若瀏覽器阻擋自動播放，改為在使用者第一次點擊時開始播放
-        const startBgm = () => {
-            bgm.play();
-            if (musicToggleBtn) {
-                musicToggleBtn.textContent = '暫停';
-            }
-            window.removeEventListener('click', startBgm);
-        };
-        window.addEventListener('click', startBgm);
-    });
-});
-
-// 播放/暫停 按鈕
+// 播放/暫停 按鈕：按一下就能啟動或暫停音樂
 if (musicToggleBtn) {
     musicToggleBtn.addEventListener('click', () => {
         if (bgm.paused) {
-            bgm.play();
-            musicToggleBtn.textContent = '暫停';
+            bgm.play().then(() => {
+                musicToggleBtn.textContent = '暫停';
+            }).catch((err) => {
+                console.error('背景音樂播放失敗：', err);
+            });
         } else {
             bgm.pause();
             musicToggleBtn.textContent = '播放';

@@ -1,0 +1,91 @@
+/* 修改 body 讓背景全黑，更像排隊系統 */
+
+body {
+
+    background-color: #222;
+
+    margin: 0;
+
+    font-family: "Microsoft JhengHei", Arial, sans-serif; /* 加上中文字型 */
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 100vh; /* 讓內容垂直居中 */
+
+}
+
+
+
+.waiting-container {
+
+    text-align: center;
+
+    padding: 20px; /* 手機版間距小一點 */
+
+    color: white;
+
+}
+
+
+
+/* 讓進度條在手機上寬度自動調整 */
+
+.progress-container {
+
+    width: 90%; /* 從 60% 改成 90%，手機才不會太細 */
+
+    max-width: 600px;
+
+    height: 16px;
+
+    background-color: #444;
+
+    border-radius: 8px;
+
+    margin: -50px auto 10px auto; /* 再往上靠一點，貼近 12.gif */
+
+    overflow: hidden;
+
+    border: 1px solid #555; /* 增加一點邊框質感 */
+
+}
+
+
+
+/* 讓實際的藍色進度條可見並有動畫效果 */
+
+#progress-bar {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: linear-gradient(90deg, #00ADEF, #32CDFF);
+
+    transition: width 0.2s ease-out;
+
+}
+
+
+
+/* 讓狀態文字更顯眼 */
+
+#status-text {
+
+    text-align: center;
+
+    color: #00ADEF; /* 改成藍色，讓使用者一眼看到動態 */
+
+    margin-top: 15px;
+
+    font-size: 16px;
+
+    letter-spacing: 1px; /* 字間距加寬，提升質感 */
+
+}
